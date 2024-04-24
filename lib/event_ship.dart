@@ -37,8 +37,19 @@ class EventLanes {
   /// If the new event is the same as the previous event then it will not be posted.
   /// This is to prevent the same event from being posted multiple times.
   /// If the boat doesn't exist, it creates a new one.
+  ///
+  /// See also [Boat.post]
   void post<T>(T event) {
     boat<T>().post(event);
+  }
+
+  /// The post method is used to post an event type of [T] to the stream
+  /// If the new event is the same as the previous event then it will not be posted.
+  /// This is to prevent the same event from being posted multiple times.
+  ///
+  /// See also [Boat.subscribe]
+  StreamSubscription<T> subscribe<T>(void Function(T event) onData) {
+    return boat<T>().subscribe(onData);
   }
 
   /// Removes and disposes the boat for events of type [T].
